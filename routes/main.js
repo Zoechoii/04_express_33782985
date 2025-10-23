@@ -19,6 +19,17 @@ router.get("/date", (req, res) => {
     res.send("<h1>Today is: " + today + "</h1>");
 });
 
+// Route with multiple handlers
+router.get("/chain", 
+    (req, res, next) => {
+        console.log("first handler called");
+        next(); 
+    },
+    (req, res) => {
+        res.send("<h1>Chain completed</h1>");
+    }
+);
+
 // Dynamic route with parameter (for welcome message)
 router.get("/welcome/:name", (req, res) => {
     const userName = req.params.name;
